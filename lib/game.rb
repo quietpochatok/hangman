@@ -33,7 +33,7 @@ class Game
   end
 
   def errors
-    return @user_guesses - normalized_letters
+    @user_guesses - normalized_letters
   end
 
   def errors_made
@@ -50,11 +50,8 @@ class Game
       @letters.map do |letter|
         normalized = normalize_letter(letter)
 
-        if @user_guesses.include?(normalized)
-          letter
-        end
+        letter if @user_guesses.include?(normalized)
       end
-    return result
   end
 
   def word_to_win
