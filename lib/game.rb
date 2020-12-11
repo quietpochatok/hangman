@@ -45,13 +45,11 @@ class Game
   end
 
   def letters_to_guess
-    result =
+    @letters.map do |letter|
+      normalized = normalize_letter(letter)
 
-      @letters.map do |letter|
-        normalized = normalize_letter(letter)
-
-        letter if @user_guesses.include?(normalized)
-      end
+      letter if @user_guesses.include?(normalized)
+    end
   end
 
   def word_to_win
