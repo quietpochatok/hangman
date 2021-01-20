@@ -1,5 +1,6 @@
 require 'colorize'
 require 'colorized_string'
+
 class ConsoleInterface
   FIGURES =
     Dir["#{__dir__}/../data/figures/*.txt"].sort.map { |file_name| File.read(file_name) }
@@ -18,16 +19,15 @@ class ConsoleInterface
 
       END
 
-      if @game.won?
-        puts "Поздравляем, вы выиграли!"
-      elsif @game.lost?
-        puts "Вы проиграли, загаданное слово #{@game.word_to_win.colorize(:blue)}"
-      end
+    if @game.won?
+      puts "Поздравляем, вы выиграли!"
+    elsif @game.lost?
+      puts "Вы проиграли, загаданное слово #{@game.word_to_win.colorize(:blue)}"
+    end
   end
 
   def figure
-
-    return FIGURES[@game.errors_made]
+    FIGURES[@game.errors_made]
   end
 
   def word_to_show
@@ -49,6 +49,6 @@ class ConsoleInterface
 
   def get_input
     print 'Введите следующую букву: '
-      gets[0].upcase
+    gets[0].upcase
   end
 end
